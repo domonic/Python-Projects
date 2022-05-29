@@ -13,10 +13,10 @@ from tensorflow.keras.models import Sequential
 
 import os
 
-asset = 'AAPL'
+asset = 'AMZN'
 cashEquivalent = 'USD'
 
-startDate = dt.datetime(2021, 5, 28)
+startDate = dt.datetime(2021, 5, 29)
 endDate = dt.datetime.now()
 
 data = web.DataReader(f'{asset}', 'yahoo', startDate, endDate)
@@ -53,7 +53,7 @@ model.fit(x_train, y_train, epochs=300, batch_size=32)
 
 # Model Testing
 
-testStart = dt.datetime(2021, 5, 28)
+testStart = dt.datetime(2021, 5, 29)
 testEnd = dt.datetime.now()
 
 testData = web.DataReader(f'{asset}', 'yahoo', testStart, testEnd)
