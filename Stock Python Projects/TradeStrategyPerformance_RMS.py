@@ -5,7 +5,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-df = yf.download('BTC-USD', start='2022-05-01', interval='30m')
+df = yf.download('BTC-USD', start='2022-04-01', interval='30m')
 
 df['%K'] = ta.momentum.stoch(df.High, df.Low, df.Close, window=14, smooth_window=3)
 df['%D'] = df['%K'].rolling(3).mean()
@@ -67,10 +67,11 @@ print(f'Calculated Cumulative Profit Returned is: {cumulativeProfits.round(3)}%'
 
 plt.figure(figsize=(10, 5))
 plt.plot(df.Close, color='k', alpha=0.7)
-plt.scatter(finalTrades.BuyingDates, df.Open[finalTrades.BuyingDates], marker='^', color='g', s=450)
-plt.scatter(finalTrades.SellingDates, df.Open[finalTrades.SellingDates], marker='v', color='r', s=450)
+plt.scatter(finalTrades.BuyingDates, df.Open[finalTrades.BuyingDates], marker='^', color='g', s=150, label='BUY')
+plt.scatter(finalTrades.SellingDates, df.Open[finalTrades.SellingDates], marker='v', color='r', s=150, label='SELL')
 plt.title('---RSI + MACD + Stochastic---')
 plt.suptitle('Trade Strategy Performance Tracking') 
 plt.xlabel(f'Dates')
 plt.ylabel('Price')
+plt.legend(loc='upper left')
 plt.show()
