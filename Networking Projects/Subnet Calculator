@@ -41,8 +41,11 @@ def numSubnets(ipv4Address):
         for char in subnetMaskBinary[octect]:
             if char == '0':
                 borrowedBits += 1
-        
-    print(f'Number of subnets available: {pow(2,(subnetBits-borrowedBits))}')
+
+    if pow(2,(subnetBits-borrowedBits)) < 1:
+        print(f'Number of subnets available: NA')
+    else:    
+        print(f'Number of subnets available: {pow(2,(subnetBits-borrowedBits))}')
            
 
 def outputNetworkInfo(ipv4Address):
