@@ -25,7 +25,7 @@ def ipType(ipv4Address):
 def numSubnets(ipv4Address):
     subnetBits = 0
     borrowedBits = 0
-    #if (IPv4Network(ipv4Address, False).num_addresses-2) > 0:
+    
     ipv4AddressOctList = str(IPv4Network(ipv4Address, False).with_prefixlen.split('/')[0])
     finalIPv4AddressOctList = (ipv4AddressOctList.split("."))
     ipv4AddressOctListBinary = [format(int(i), '08b') for i in finalIPv4AddressOctList]
@@ -73,15 +73,16 @@ def outputAdditionalNetworkInfo(ipv4Address: IPv4Network):
 
 
 if __name__ == '__main__':
-    running = 1
-    while running == 1:
+    running = '1'
+    while running == '1':
         try:
             print('\n')
             ipv4Address = ipaddress.ip_interface(input("Please enter a IPv4 Address i.e. (192.168.0.0/32): "))
             networkInfo = outputNetworkInfo(ipv4Address)
             additionalNetworkInfo = outputAdditionalNetworkInfo(IPv4Network(ipv4Address, False))
             print('\n-------------------------------------------------------')
-
+            running = (input("\nTo Exit Press Any Key or to Continue Press 1: "))
+            
         except Exception as e:
             print(e)
             continue
